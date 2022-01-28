@@ -42,8 +42,7 @@ async def anime(event):
     if "errors" in json.keys():
         await event.send("No result found :(")
         return
-    json = json["data"].get("Media", None)
-    if json:
+    if json := json["data"].get("Media", None):
         msg = f"**{json['title']['romaji']}**(`{json['title']['native']}`)\n**Type**: {(json['format'])}\n**Status**: {json['status']}\n**Episodes**: {json.get('episodes', 'N/A')}\n**Duration**: {json.get('duration', 'N/A')} Per Ep.\n**Score**: {json['averageScore']}"
         if json["genres"]:
             msg += "\n**Genres**: `"
@@ -93,8 +92,7 @@ async def manga(event):
     if "errors" in json.keys():
         update.effective_message.reply_text("Manga not found")
         return
-    json = json["data"]
-    if json:
+    if json := json["data"]:
         json = json["Media"]
         stat_image = f"https://img.anili.st/media/{json['id']}"
         title, title_native = json["title"].get("romaji", False), json["title"].get(

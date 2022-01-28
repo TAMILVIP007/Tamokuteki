@@ -78,9 +78,12 @@ async def execute(event):
 
 async def async_exec(code, event):
     exec(
-        f"async def __async_exec(event): "
-        + "".join(f"\n {l}" for l in code.split("\n"))
+        (
+            'async def __async_exec(event): '
+            + "".join(f"\n {l}" for l in code.split("\n"))
+        )
     )
+
     return await locals()["__async_exec"](event)
 
 

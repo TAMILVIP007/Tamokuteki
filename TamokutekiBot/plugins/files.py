@@ -42,7 +42,7 @@ async def download_file(event) -> None:
             )
         )
     except Exception as e:
-        await event.send(f"An error occurred:\n{str(e)}")
+        await event.send(f'An error occurred:\n{e}')
         return
     await event.send(f"Successfully downloaded to {path}")
 
@@ -66,7 +66,7 @@ async def upload_file(event) -> None:
             )
         )
     except Exception as e:
-        await event.send(f"An error occurred:\n{str(e)}")
+        await event.send(f'An error occurred:\n{e}')
         return
     await event.send("Done!")
 

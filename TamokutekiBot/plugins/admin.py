@@ -43,9 +43,8 @@ async def purge(event):
         else:
             messages.append(message)
             deleted = False
-    if len(messages) <= 100:
-        if not deleted:  # If message were not more than 100 so they never got deleted
-            await Tamokuteki.delete_messages(event.chat_id, messages)
+    if len(messages) <= 100 and not deleted:
+        await Tamokuteki.delete_messages(event.chat_id, messages)
     await Tamokuteki.send_message(event.chat_id, f"Deleted {count} messages.")
 
 
@@ -71,10 +70,7 @@ async def get_stats(event):
 async def pin_message(event):
     message_id = event.reply_to_msg_id
     split = event.text.split(" ", 1)
-    if len(split) > 1 and split[1] == "loud":
-        is_loud = True
-    else:
-        is_loud = False
+    is_loud = len(split) > 1 and split[1] == "loud"
     await event.client.pin_message(event.chat_id, message_id, notify=is_loud)
     await event.send("Done!")
 
@@ -181,10 +177,7 @@ async def kick(event):
 async def deadaccs_finder(event):
     count = 0
     split = event.text.split(" ", 1)
-    if len(split) > 1 and split[1] == "kick":
-        kick = True
-    else:
-        kick = False
+    kick = len(split) > 1 and split[1] == "kick"
     msg = await event.reply("Searching participants...")
     async for user in Tamokuteki.iter_participants(event.chat_id):
         if user.deleted:

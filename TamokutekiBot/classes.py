@@ -37,7 +37,7 @@ class TamokutekiClient(TelegramClient):
         help_plugin = Path(__file__).parent / "help.py"
         self.load_plugin(core_plugin)
         self.load_plugin(help_plugin)
-        for plugin in Path(__file__).parent.glob(f"plugins/*.py"):
+        for plugin in Path(__file__).parent.glob('plugins/*.py'):
             if Path(plugin).stem in NO_LOAD:
                 continue
             self.load_plugin(plugin)
@@ -64,7 +64,7 @@ class TamokutekiClient(TelegramClient):
 
     def unload_plugin(self, plugin: str) -> None:
         """Unload plugin."""
-        if plugin in ["core", "help"]:
+        if plugin in {"core", "help"}:
             return False
         try:
             name = self.__plugins__[plugin].__name__

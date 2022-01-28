@@ -89,7 +89,7 @@ if COLLECTION:
         if (
             event.fwd_from
             or event.media
-            or not (str(event.sender_id) in (await get_data())["users"])
+            or str(event.sender_id) not in (await get_data())["users"]
         ):
             return
         print("Replying to user: " + str(event.sender_id))
