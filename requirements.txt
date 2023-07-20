@@ -1,5 +1,5 @@
 telethon
-aiohttp == 3.6.2
+aiohttp == 3.8.5
 tracemoepy
 motor
 dnspython
